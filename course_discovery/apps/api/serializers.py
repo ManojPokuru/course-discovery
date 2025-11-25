@@ -126,7 +126,7 @@ def get_marketing_url_for_user(partner, user, marketing_url, exclude_utm=False, 
     else:
         params = urlencode({
             'utm_source': get_utm_source_for_user(partner, user),
-            'utm_medium': user.referral_tracking_id,
+            'utm_medium': getattr(user, 'referral_tracking_id', None),
         })
         return f'{marketing_url}?{params}'
 
